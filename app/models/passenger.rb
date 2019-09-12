@@ -1,4 +1,8 @@
 class Passenger < ApplicationRecord
+
+  scope :alive, -> { where(survived: true) }
+  scope :dead, -> { where(survived: false) }
+
   enum sex: {
     male: 0,
     female: 1,
