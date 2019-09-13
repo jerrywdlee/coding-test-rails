@@ -8,11 +8,16 @@ module DataImport
       passengers = []
       table.each do |row|
         params = row.to_hash.keep_if {|key, _| columns.include?(key)}
-        passengers << Passenger.find_or_initialize_by(params)
+        passenger = Passenger.find_by(params)
+        unless passenger
+          passenger = Passenger.new(params)
+          passengers << passenger
+        end
       end
       ActiveRecord::Base.transaction do
         Passenger.import passengers
       end
+      puts "#{passengers.size} passengers inseted!"
     end
   end
 end
