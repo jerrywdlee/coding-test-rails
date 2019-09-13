@@ -1,24 +1,19 @@
-# README
+# Rails Coding Test For Google Colab
+Use Google Colab for Rails coding test
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+[English](./README.md) | [日本語](https://qiita.com/jerrywdlee/items/a3000990c50933e66871)
 
-Things you may want to cover:
+## Usage
+1. Download [this notebook](./vendor/notebooks/Rails_for_Colab_[ja].ipynb) and upload to your Google Drive.
+2. Right click the notebook and open as [Google Colaboratory].
+3. Run cells sequentially under [環境構築] field.
+4. Answer quizs under [質問] field.
+5. Save notebook and share it to your examiner.
 
-* Ruby version
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-* System dependencies
+Please make sure to update tests as appropriate.
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## [License](./LICENSE)
+[MIT](https://opensource.org/licenses/MIT)
