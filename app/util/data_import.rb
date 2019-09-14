@@ -2,7 +2,7 @@ require "csv"
 
 module DataImport
   class << self
-    def load_csv(path)
+    def load_titanic_csv(path)
       table = CSV.table(path)
       columns = Passenger.columns.map(&:name).map(&:to_sym)
       passengers = []
