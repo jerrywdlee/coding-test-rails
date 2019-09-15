@@ -39,6 +39,10 @@ module DataImport
           CSV.table(File.join(dir_path, "reviews.csv")),
           Review
         )
+        import_from_csv_table(
+          CSV.table(File.join(dir_path, "purchases.csv")),
+          Purchase
+        )
       end
     end
 
