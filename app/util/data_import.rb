@@ -43,6 +43,19 @@ module DataImport
           CSV.table(File.join(dir_path, "purchases.csv")),
           Purchase
         )
+        import_from_csv_table(
+          CSV.table(File.join(dir_path, "tags.csv")),
+          Tag
+        )
+
+        items_tags = CSV.table(File.join(dir_path, "items_tags.csv"))
+        sql = "INSERT INTO items_tags (#{items_tags.headers.join(',')}) VALUES "
+        sql += items_tags.map do |row|
+          "(#{row.to_hash.values.join(',')})"
+        end.join(',')
+        con = ActiveRecord::Base.connection
+        con.execute("DELETE FROM items_tags")
+        con.execute(sql)
       end
     end
 
