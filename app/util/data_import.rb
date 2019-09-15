@@ -20,6 +20,7 @@ module DataImport
       puts "#{passengers.size} passengers inseted!"
     end
 
+    # DataImport.load_sales_data_csv
     def load_sales_data_csv(dir_path = "vendor/sample_csv")
       ActiveRecord::Base.transaction do
         import_from_csv_table(
@@ -29,6 +30,14 @@ module DataImport
         import_from_csv_table(
           CSV.table(File.join(dir_path, "addresses.csv")),
           Address
+        )
+        import_from_csv_table(
+          CSV.table(File.join(dir_path, "items.csv")),
+          Item
+        )
+        import_from_csv_table(
+          CSV.table(File.join(dir_path, "reviews.csv")),
+          Review
         )
       end
     end
