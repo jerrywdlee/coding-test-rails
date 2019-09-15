@@ -19,5 +19,27 @@ module DataImport
       end
       puts "#{passengers.size} passengers inseted!"
     end
+
+    def load_sales_data_csv(dir_path = "vendor/sample_csv")
+      ActiveRecord::Base.transaction do
+        import_from_csv_table(
+          CSV.table(File.join(dir_path, "customers.csv")),
+          Customer
+        )
+        import_from_csv_table(
+          CSV.table(File.join(dir_path, "addresses.csv")),
+          Address
+        )
+      end
+    end
+
+    def import_from_csv_table(csv_table, model)
+      columns = model.columns.map(&:name).map(&:to_sym)
+      model.import(csv_table.map do |row|
+        params = row.to_hash.keep_if {|key, _| columns.include?(key)}
+        object = model.find_by(params)
+        object ? nil : model.new(params)
+      end.compact)
+    end
   end
 end
