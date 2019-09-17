@@ -17,7 +17,7 @@ module DataImport
       ActiveRecord::Base.transaction do
         Passenger.import passengers
       end
-      puts "#{passengers.size} passengers inseted!"
+      puts "#{passengers.size} passengers inserted!"
     end
 
     # DataImport.load_sales_data_csv
@@ -56,16 +56,23 @@ module DataImport
         con = ActiveRecord::Base.connection
         con.execute("DELETE FROM items_tags")
         con.execute(sql)
+
+        puts "Sales Data imported!"
       end
     end
 
-    def import_from_csv_table(csv_table, model)
+    def import_from_csv_table(csv_table, model, log_flg = true)
       columns = model.columns.map(&:name).map(&:to_sym)
-      model.import(csv_table.map do |row|
+      objects = csv_table.map do |row|
         params = row.to_hash.keep_if {|key, _| columns.include?(key)}
         object = model.find_by(params)
         object ? nil : model.new(params)
-      end.compact)
+      end.compact
+      model.import(objects)
+      if log_flg
+        class_name = model.new.class.name.pluralize
+        puts "#{objects.size} #{class_name} inserted!"
+      end
     end
   end
 end
