@@ -1,4 +1,7 @@
 # Rails Coding Test For Google Colab
+[![Build Status](https://travis-ci.org/jerrywdlee/coding-test-rails.svg?branch=master)](https://travis-ci.org/jerrywdlee/coding-test-rails)
+[![Coverage Status](https://coveralls.io/repos/github/jerrywdlee/coding-test-rails/badge.svg?branch=master)](https://coveralls.io/github/jerrywdlee/coding-test-rails?branch=master)
+
 Use Google Colab for Rails coding test
 
 [English](./README.md) | [日本語](https://qiita.com/jerrywdlee/items/a3000990c50933e66871)
